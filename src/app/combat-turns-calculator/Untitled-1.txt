@@ -1,0 +1,83 @@
+<div class="container color-dark">
+  <div class="col">
+    <p>Add Player...</p>
+  </div>
+  <div class="col">
+    <p>Turn order</p>
+  </div>
+</div>
+<!--{{ diagnostic }}-->
+<div class="container color-light">
+  <div class="col">
+      <form (ngSubmit)="onSubmit(); playerForm.reset()" #playerForm="ngForm">
+        <!--
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" required [(ngModel)]="player.name" name="name">
+        </div>
+        -->
+
+        <mat-form-field>
+          <input matInput class="example-full-width" placeholder="Name" required [(ngModel)]="player.name" name="name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput class="example-full-width" placeholder="Initiative Modifier" required [(ngModel)]="player.initiativeMod" name="initiativeMod">
+        </mat-form-field>
+
+        <mat-checkbox required [(ngModel)]="player.isNPC" name="isNPC">Is NPC?</mat-checkbox>
+        
+        <mat-form-field>
+          <input matInput placeholder="Roll" required [(ngModel)]="player.roll" name="roll">
+        </mat-form-field>
+
+        <button mat-fab type="button" (click)="rollDice20()">Roll</button>   
+
+        <button mat-button color="primary" type="submit">Add</button>
+      </form>
+  </div>
+
+  <div class="col">
+    <p *ngFor="let player of players, let i = index" (click)="removePlayer(i)">
+      {{ player.name }}     {{ player.initiativeMod }} 
+    </p>
+  </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+<mat-card fxLayout="row" fxLayoutAlign="center stretch" class="container noPadding" style="padding: 0">
+  
+  <!--column left-->
+  <mat-card fxFlex="20%">
+  </mat-card>
+  
+  <!--column middle-->
+  <mat-card fxFlex="60%"> 
+    
+    <mat-card fxLayout="col" fxLayoutAlign="center stretch" class="noPadding">
+      
+      <mat-card fxFlex="50%" style="min-height: 100vh">
+        <p>1</p>
+      </mat-card>
+      <mat-card fxFlex="50%" style="min-height: 100vh">
+        <p>1</p>
+      </mat-card>
+
+    </mat-card>
+
+  </mat-card>
+  
+  <!--column right-->
+  <mat-card fxFlex="20%"> 
+  </mat-card>
+
+</mat-card>

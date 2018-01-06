@@ -1,0 +1,45 @@
+<div class="container color-dark">
+  <div class="col">
+    <p>Add Player...</p>
+  </div>
+  <div class="col">
+    <p>Turn order</p>
+  </div>
+</div>
+<!--{{ diagnostic }}-->
+<div class="container color-light">
+  <div class="col">
+      <form (ngSubmit)="onSubmit(); playerForm.reset()" #playerForm="ngForm">
+        <!--
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" required [(ngModel)]="player.name" name="name">
+        </div>
+        -->
+        <br>
+        <mat-form-field>
+          <input matInput class="example-full-width" placeholder="Name" [(ngModel)]="player.name" name="name">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput class="example-full-width" placeholder="Initiative Modifier" [(ngModel)]="player.initiativeMod" name="initiativeMod">
+        </mat-form-field>
+        <br>
+        <mat-checkbox [(ngModel)]="player.isNPC" name="isNPC">Is NPC?</mat-checkbox>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Roll" [(ngModel)]="player.roll" name="roll">
+        </mat-form-field>
+        <button mat-fab type="button" (click)="rollDice20()">Roll</button>   
+        <br>
+        <button mat-button color="primary" type="submit">Add</button>
+      </form>
+  </div>
+
+  <div class="col">
+    <p *ngFor="let player of players, let i = index" (click)="removePlayer(i)">
+      {{ player.name }}     {{ player.initiative }} 
+    </p>
+  </div>
+    
+</div>
